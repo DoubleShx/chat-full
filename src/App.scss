@@ -1,0 +1,10 @@
+.wraper {
+  background-color: rgb(237, 235, 235);
+  height: 100vh;
+  font-family: 'Vidaloka', serif;
+}
+.wraper.authPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
