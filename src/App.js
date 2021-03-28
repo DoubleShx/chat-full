@@ -12,7 +12,7 @@ function App() {
     
     <div className={classNames('wraper', {'authPage': true})}>
       <Router>
-        <Route path={['/', "/login"]} render={match => {
+        <Route path={['/', "/login", 'register']} render={match => {
           return (
               <Auth match={match} />
           )
