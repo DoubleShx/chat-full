@@ -1,5 +1,5 @@
-import Auth from './pages/Auth';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Auth, Home } from './pages';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import PropTypes from 'prop-types'
 import classNames from 'classnames';
@@ -12,11 +12,16 @@ function App() {
     
     <div className={classNames('wraper', {'authPage': true})}>
       <Router>
-        <Route path={['/', "/login", 'register']} render={match => {
-          return (
-              <Auth match={match} />
-          )
-        }} />        
+          <Switch>
+          <Route path="/im"  render={()=> {return <Home/>}} />
+          <Route path={['/', "/login", '/register']} render={match => {
+            return (
+                <Auth match={match} />
+            )
+          }} />  
+          </Switch>
+
+
       </Router>
     </div>
   );

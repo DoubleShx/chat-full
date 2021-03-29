@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
 import { ExclamationCircleTwoTone } from '@ant-design/icons'
 import './RegisterForm.scss'
@@ -6,120 +6,55 @@ import './RegisterForm.scss'
 
 
 
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
-  },
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
-  },
-};
-
-
-const RegisterForm = ({registerClickedFunc, registerClicked}) => {
-  const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
-
-  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
 
 
 
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
+const RegisterForm = (props) => {
+  const {registerClickedFunc, registerClicked, handleSubmit, values, touched, errors, handleChange, handleBlur} = props
   return (
     <React.Fragment>
         {!registerClicked 
         ? <Form className="formRegister"
-    
-        {...formItemLayout}
-        form={form}
-        name="register"
-        onFinish={onFinish}
-        initialValues={{
-          residence: ['zhejiang', 'hangzhou', 'xihu'],
-          prefix: '86',
-        }}
-        scrollToFirstError
       >
           <h1>Регистрация</h1>
           <h3>Для входа в чат, Вам нужно зарегистрироваться</h3>
         <Form.Item
+          id="email"
           name="email"
-          rules={[
-            {
-              type: 'email',
-              message: 'The input is not valid E-mail!',
-            },
-            {
-              required: true,
-              message: 'Please input your E-mail!',
-            },
-          ]}
-        >
-          <Input placeholder="E-mail"/>
+          validateStatus={ !touched.email ? ''
+          : errors.email ? 'error' : 'success'}
+          help={!touched.email ? null : errors.email}
+          hasFeedback
+          >
+          <Input placeholder="E-mail" onChange={handleChange} onBlur={handleBlur}/>
         </Form.Item>
   
         <Form.Item
+          id="password"
           name="password"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password!',
-            },
-          ]}
+          validateStatus = { !touched.password ? '' 
+          : errors.password ? 'error': 'success'}
+          help={!touched.password ? null : errors.password}
+         
           hasFeedback
         >
-          <Input.Password placeholder="Password"/>
+          <Input.Password placeholder="Password" onChange={handleChange} onBlur={handleBlur}/>
         </Form.Item>
   
         <Form.Item
-          name="confirm"
-          dependencies={['password']}
-          hasFeedback
-          rules={[
-            {
-              required: true,
-              message: 'Please confirm your password!',
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
-                  return Promise.resolve();
-                }
-  
-                return Promise.reject(new Error('The two passwords that you entered do not match!'));
-              },
-            }),
-          ]}
+         id="passwords"
+         name="passwords"
+         validateStatus = { !touched.passwords ? '' 
+         : errors.passwords ? 'error': 'success'}
+         help={!touched.password ? null : errors.passwords}        
+         hasFeedback          
         >
-          <Input.Password placeholder='Confirm Password'/>
+          <Input.Password placeholder='Confirm Password' onChange={handleChange} onBlur={handleBlur}/>
         </Form.Item>
   
         <Form.Item
           name="nickname"
           tooltip="What do you want others to call you?"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your nickname!',
-              whitespace: true,
-            },
-          ]}
         >
           <Input placeholder="NickName"/>
         </Form.Item>
@@ -129,30 +64,24 @@ const RegisterForm = ({registerClickedFunc, registerClicked}) => {
         <Form.Item 
         className="checkbox-form"
           name="agreement"
-          valuePropName="checked"
-          rules={[
-            {
-              validator: (_, value) =>
-                value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
-            },
-          ]}
-          
+          valuePropName="checked"          
         >
             <div className="flex-checkbox">
           <Checkbox>
           <div className="flex-checkbox">
-            I have read the <a href="">agreement</a>
+            I have read the agreement
             </div>
           </Checkbox>
           </div>
         </Form.Item>
         <Form.Item >
-          <Button type="primary" htmlType="submit" size="large" onClick={() => registerClickedFunc()}>
+          <Button type="primary" htmlType="submit" size="large" onClick={() => handleSubmit()}>
             Register
           </Button>
         </Form.Item>
         
       </Form>: <MailSend/> }
+      <button onClick={()=> console.log(props.values)}>props Register</button>
     
     </React.Fragment>
   );

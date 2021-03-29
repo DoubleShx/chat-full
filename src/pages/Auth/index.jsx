@@ -8,12 +8,14 @@ import './Auth.scss'
 export default class Auth extends Component  {
   componentDidMount() {
     let {pathname} = this.props.match.location;
+    if (pathname.includes('register')) {
     this.setState({
       pathname
     })
+    }
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.match.location.pathname != this.props.match.location.pathname) {
+    if (prevProps.match.location.pathname !== this.props.match.location.pathname) {
       let {pathname} = this.props.match.location
       this.setState({
         pathname
@@ -22,7 +24,7 @@ export default class Auth extends Component  {
   }
 
   state = {
-    pathname: '',
+    pathname: '/login',
     registerClicked: false
   }
 
@@ -44,8 +46,8 @@ render() {
           {pathname==='/login' ? <LoginForm/> :
           <RegisterForm registerClickedFunc={this.registerClickedFunc} registerClicked={this.state.registerClicked}/>}          
         </Block>
-        <button onClick={() => console.log(this.state)}>State</button>
-        <button onClick={() => console.log(this.props)}>Props</button>
+        <button onClick={() => console.log(this.state)}>State Auth</button>
+        <button onClick={() => console.log(this.props)}>Props Auth</button>
       </section>
     );
     }  
