@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 export default class LoginForm extends Component {
     render () {
+      const {handleSubmit, values, touched, errors, handleChange, handleBlur} = this.props
         const onFinish = (values) => {
             console.log('Received values of form: ', values);
           }
@@ -14,37 +15,31 @@ export default class LoginForm extends Component {
             <h2>Войти в Аккаунт</h2>
             <p>Пожалуйста, войдите в свой аккаунт</p>
             <Form
-            name="normal_login"
-            className="login-form"
-            initialValues={{
-              remember: true,
-            }}
-            onFinish={onFinish}
+            onSubmit = {handleSubmit}
           >
             <Form.Item
-              name="username"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your Username!',
-                },
-              ]}
+              name="email"
+              validateStatus={!touched.email ? null 
+              : errors.email? "error" : 'success'}
+              help={!touched.email ? null : errors.email}
+              hasFeedback
             >
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="E-mail" onChange={handleChange} onBlur={handleBlur}/>
             </Form.Item>
             <Form.Item
               name="password"
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your Password!',
-                },
-              ]}
+              validateStatus = { !touched.password ? '' 
+              : errors.password ? 'error': 'success'}
+              help={!touched.password ? null : errors.password}
+              hasFeedback
+
             >
               <Input
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
                 placeholder="Password"
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </Form.Item>
   

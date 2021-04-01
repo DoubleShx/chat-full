@@ -1,0 +1,33 @@
+.audioMessage {
+    width: 100%;
+    position: relative;
+    display: flex;
+
+    .btn_play_pause {
+        align-self: left;
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        img {
+            position: absolute;
+            left: 0px;
+            bottom: 14px;
+            height: 22px;            
+        }
+    } 
+    .waves{
+        display: flex;
+        margin-left: 5px;
+    }
+    .wave {
+        display: inline;
+        height: 22px;
+    }
+
+    .audioTimeCode {
+        align-self: flex-end;
+        text-align: right;
+        width: 100%;
+    }
+}

@@ -1,0 +1,82 @@
+.dialogs__item {
+    overflow-x: hidden;
+    min-height: 100px !important;
+    background-color: rgba(237, 242, 236, 0.7);
+    align-items: center;
+    border: 2px solid rgba(230, 238, 230, 1);
+    border-radius: 6px;
+    box-shadow: 0px 2px 4px 1px #19abb5;
+    .isOnline::after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: greenyellow;
+        z-index: 999;
+    }
+    .avatar_dialog_round {
+        margin: auto 5% auto 5%;
+        width: 45px;
+        height: 45px;
+        line-height: 60px;
+        background: linear-gradient(170deg, #19abb5, #c5c6d0);
+        border-radius: 50%;
+        text-align: center;
+        align-items: center;
+        span {
+            display: inline-block;
+            line-height: normal;
+            vertical-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+    .dialog_item_name_message {
+        position: relative;
+        padding-left: 15px;
+        text-overflow: ellipsis;
+
+        .dialog_item_name {
+            font-size: 18px;
+            h3 {
+                color: rgb(44, 41, 41);
+                margin-bottom: 0;
+            }
+        }
+        .dialog_item_message {
+            font-size: 14px;
+            color: rgb(32, 170, 170);
+            overflow: hidden;
+            max-width: 10ch;
+            max-height: 50px; 
+        }
+    }
+    .date_last_message {
+      position: absolute;
+      font-size: 12px;
+      color: rgb(26, 23, 23);
+      top: 0;
+      left:70%;
+    }
+} 
+.dialogs__item:hover {
+    background-color: rgba(192, 192, 225, 0.563);
+    box-shadow: 3px 3px 1px 3px rgb(205, 221, 214) !important;
+    transition: background-color 1s ease;
+    cursor: pointer;
+}
+.unreaded {
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    left: 70%;
+    width: 25px;
+    height: 25px;
+    border-radius: 12.5px;
+    background-color: brown;
+}

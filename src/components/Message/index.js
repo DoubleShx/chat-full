@@ -1,15 +1,17 @@
 import React from 'react'
 
 import PropTypes from 'prop-types'
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-import ruLocale from 'date-fns/locale/ru'
+
 import { Avatar } from 'antd';
 import { CheckCircleFilled, EyeInvisibleFilled  } from '@ant-design/icons'
 
+
 import './Message.scss'
 import classNames from 'classnames';
+import Time from '../Time';
+import AudioMessage from '../AudioMessage';
 
-const Message = ({text=null, date=null, avatar, box, attachments=null, checked = false}) => {
+const Message = ({text=null, date=null, avatar, box, attachments=null, checked = false, isTyping=false}) => {
     let isMessageInbox;
     if (box.includes('inbox')) {
         isMessageInbox = true;
@@ -21,11 +23,20 @@ const Message = ({text=null, date=null, avatar, box, attachments=null, checked =
                 <div className="message_avatar">
                 <Avatar className="avatar_circle">{avatar}</Avatar>
                 </div>                
-                <div className={classNames("message_text", {'textIsntExist': !text})}>
-                <p>{text}</p>                
+                <div className={classNames("message_text", {'textIsntExist': !text && !isTyping})}>
+                    
+                    <AudioMessage />
+                   
+                <p>
+                    {text} 
+
+                </p>    
+                {isTyping ? <div className="isTyping"> 
+                    <span></span><span></span><span></span>
+                    </div> : null}            
                 </div>  
                 {attachments 
-                ? <ul className="attachments"> 
+                ? <ul className={classNames({'attachments': text, "attachments_without_text": !text})}> 
                     {attachments.map(el => {
                         return (<li key={el.id}><img src={el.url} alt={el.fileName}/></li>)
                  }) } </ul>
@@ -36,7 +47,7 @@ const Message = ({text=null, date=null, avatar, box, attachments=null, checked =
             </div>
 
             
-            <p className="message_date">{formatDistanceToNow(new Date(date), {addSuffix: true, locale: ruLocale})}</p>
+            <Time date={date}/>
         </div>
     )
 }
