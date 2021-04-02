@@ -1,9 +1,7 @@
 import React from 'react'
 import './DialogItem.scss'
 import {Row, Col} from 'antd'
-import ruLocale from 'date-fns/locale/ru'
 import classNames from 'classnames'
-import { format } from 'date-fns'
 import Time from '../Time'
 
 const DialogItem = ({avatar, name, lastmessage, date, isOnline=false}) => {

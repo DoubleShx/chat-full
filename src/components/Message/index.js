@@ -11,7 +11,8 @@ import classNames from 'classnames';
 import Time from '../Time';
 import AudioMessage from '../AudioMessage';
 
-const Message = ({text=null, date=null, avatar, box, attachments=null, checked = false, isTyping=false}) => {
+const Message = ({text=null, date=null, avatar, box, attachments=null, checked = false, isTyping=false, audio=null}) => {
+    const audioLink='https://notificationsounds.com/storage/sounds/file-sounds-1148-juntos.ogg'
     let isMessageInbox;
     if (box.includes('inbox')) {
         isMessageInbox = true;
@@ -24,8 +25,9 @@ const Message = ({text=null, date=null, avatar, box, attachments=null, checked =
                 <Avatar className="avatar_circle">{avatar}</Avatar>
                 </div>                
                 <div className={classNames("message_text", {'textIsntExist': !text && !isTyping})}>
-                    
-                    <AudioMessage />
+                    {
+                    <AudioMessage audioLink={audioLink}/>
+                    }
                    
                 <p>
                     {text} 
