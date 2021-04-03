@@ -3,17 +3,19 @@ import './DialogItem.scss'
 import {Row, Col} from 'antd'
 import classNames from 'classnames'
 import Time from '../Time'
+import {gradientGenerate} from '../../utilities/index'
+import GradientAvatar from '../GradientAvatar'
 
 const DialogItem = ({avatar, name, lastmessage, date, isOnline=false}) => {
-    
+    const gradient = gradientGenerate(name)
 
 
     return(
         <Row span={24} className="dialogs__item">
             <Col span={5} className="avatar_dialog">
                 { avatar
-                ? <img className={classNames("img_avatar_dialog", {isOnline: isOnline})} src={avatar}/>
-                : <div className={classNames("avatar_dialog_round", {isOnline: isOnline})}><span>{name.slice(0,1)}</span></div>
+                ? <img className={classNames("img_avatar_dialog", {isOnline: isOnline})} src={avatar} alt="avatar"/>
+                : <GradientAvatar name={name} className={classNames("avatar_dialog_round", {isOnline: isOnline})}/>
                 }
             </Col>
             <Col span={19} className="dialog_item_name_message">

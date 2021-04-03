@@ -10,9 +10,9 @@ import './Message.scss'
 import classNames from 'classnames';
 import Time from '../Time';
 import AudioMessage from '../AudioMessage';
+import GradientAvatar from '../GradientAvatar';
 
-const Message = ({text=null, date=null, avatar, box, attachments=null, checked = false, isTyping=false, audio=null}) => {
-    const audioLink='https://notificationsounds.com/storage/sounds/file-sounds-1148-juntos.ogg'
+const Message = ({text=null, date=null, avatar, box, attachments=null, checked = false, isTyping=false, audioLink=null}) => {
     let isMessageInbox;
     if (box.includes('inbox')) {
         isMessageInbox = true;
@@ -22,11 +22,11 @@ const Message = ({text=null, date=null, avatar, box, attachments=null, checked =
         <div className={classNames('message_container', {"message_container_left": !isMessageInbox, "message_container_right": isMessageInbox })}> 
             <div className="message">
                 <div className="message_avatar">
-                <Avatar className="avatar_circle">{avatar}</Avatar>
+                <GradientAvatar name={avatar} className="avatar_circle"/>
                 </div>                
-                <div className={classNames("message_text", {'textIsntExist': !text && !isTyping})}>
-                    {
-                    <AudioMessage audioLink={audioLink}/>
+                <div className={classNames("message_text", {'textIsntExist': !text && !audioLink && !isTyping})}>
+                    { audioLink?
+                    <AudioMessage audioLink={audioLink}/> : null
                     }
                    
                 <p>

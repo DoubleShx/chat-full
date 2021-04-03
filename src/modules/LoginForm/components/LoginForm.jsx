@@ -6,10 +6,8 @@ import { Link } from 'react-router-dom'
 
 export default class LoginForm extends Component {
     render () {
-      const {handleSubmit, values, touched, errors, handleChange, handleBlur} = this.props
-        const onFinish = (values) => {
-            console.log('Received values of form: ', values);
-          }
+      const {handleSubmit, touched, errors, handleChange, handleBlur} = this.props
+
         return (
             <div>
             <h2>Войти в Аккаунт</h2>

@@ -3,7 +3,7 @@ import './AudioMessage.scss'
 import playSvg from '../../assets/img/play.svg'
 import pauseSvg from '../../assets/img/pause.svg'
 import audioWave from '../../assets/img/audioWave.svg'
-import TimeHelper from '../../utilities/helpers/timeHelper'
+import {timeHelper} from '../../utilities'
 
 
 const AudioMessage = ({audioLink}) => {
@@ -52,7 +52,7 @@ const AudioMessage = ({audioLink}) => {
                 <audio ref={audioElem} src={audioLink} preload="auto" volume="1"/>
                 <span className="waves">
                     <span className="progressBar" style={{width:progressTime+'%'}}></span><img  className="wave" src={audioWave} alt="audio"/><img className="wave" src={audioWave} alt="audio"/><img className="wave" src={audioWave} alt="audio"/><img className="wave" src={audioWave} alt="audio"/></span>
-                <span className="audioTimeCode">{TimeHelper(currentTime)}</span>
+                <span className="audioTimeCode">{timeHelper(currentTime)}</span>
             </div>
         )
 }

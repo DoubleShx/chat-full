@@ -10,7 +10,7 @@ import './RegisterForm.scss'
 
 
 const RegisterForm = (props) => {
-  const {registerClickedFunc, registerClicked, handleSubmit, values, touched, errors, handleChange, handleBlur} = props
+  const {registerClickedFunc, registerClicked, handleSubmit, touched, errors, handleChange, handleBlur} = props
   return (
     <React.Fragment>
         {!registerClicked 

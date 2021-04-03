@@ -1,20 +1,21 @@
 import React from 'react'
 import Message from '../../components/Message'
+import Dialogs from '../../components/Dialogs'
 import { Row, Col } from 'antd'
 
 import './Home.scss'
-import DialogItem from '../../components/DialogItem'
-import Dialogs from '../../components/Dialogs'
+
 
 
 const Home = () => {
     const date = 'Wed Apr 01 2021 13:05:04';
     const DialogItems = [
-        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 15 2020 13:05:04', id:1},
+        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: date, id:1},
         {name: 'tripled', lastmessage:'sdasdas asddas dasda', date: 'Wed Apr 01 2021 13:05:04', id:2},
         {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 18 2020 13:05:04', id:3},
         {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
     ]
+    const audioLink='https://notificationsounds.com/storage/sounds/file-sounds-1148-juntos.ogg';
 
     return (
         <section className="Home">
@@ -33,7 +34,7 @@ const Home = () => {
                 <div className="chat">
                 <Message text={'testing tests 👌🏼'} 
                 box={'sendbox'}
-                avatar={'U'}
+                avatar={'Udas'}
                 date={"Sun Mar 28 2021 14:01:16"}
                 checked={true}
                 attachments = {
@@ -60,7 +61,7 @@ const Home = () => {
                 box={'inbox'}
                 text={'testing tests testing tests testing tests testing tests testing tests testing tests asdasdasdasdasdas'}
                 date={"Sun Mar 28 2021 14:01:16"}
-                avatar={'B'}
+                avatar={'Bdsa'}
                 attachments= {
                     [
                         {
@@ -115,7 +116,7 @@ const Home = () => {
                 box={'sendbox'}
                 text={'testing tests testing tests testing tests testing tests testing tests testing tests testing tests testing tests testing tests testing tests testing tests testing tests testing tests'}
                 date={"Sun Mar 28 2021 14:01:16"}
-                avatar={'F'}
+                avatar={'Fdfs'}
                 attachments= {
                     [
                         {
@@ -168,9 +169,16 @@ const Home = () => {
                 />
                 <Message 
                 box={'sendbox'}
-                text={'testing tests'}
                 date={"Sun Mar 28 2021 14:01:16"}
-                avatar={'G'}
+                avatar={'Grqw'}
+                audioLink={audioLink}
+                attachments= {
+                    [
+                        {
+                            fileName: 'image1.jpg',
+                            url: "https://source.unsplash.com/100x100/?random=1&nature,water",
+                            id: 1
+                        }] }
                 />
                 <Message
                 attachments= {
@@ -181,13 +189,14 @@ const Home = () => {
                             id: 13
                         }]}
                         box = {'sendbox'}
-                        avatar = {'S'}
+                        avatar = {'Sfasd'}
                         />
                 <Message 
                 box={'sendbox'}
                 date={"Sun Mar 28 2021 14:01:16"}
-                avatar={'G'}
+                avatar={'Grqw'}
                 isTyping={true}
+                audioLink={audioLink}
                 />
                 </div>
             </div>

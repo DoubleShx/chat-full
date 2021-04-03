@@ -11,7 +11,7 @@ export default withFormik({
     validate: values => {
         const errors = {};
         console.log(values)
-        const validate = validateFunc({IsAuth:true, values, errors});       
+        validateFunc({IsAuth:true, values, errors});       
         return errors;
     },
     handleSubmit: (values, { setSubmitting }) => {

@@ -21,8 +21,12 @@
             bottom: 0 !important;
             width: 32px;
             height: 32px;
+            text-align: center;
+            vertical-align: middle;
             .avatar_circle {
-                background: linear-gradient(170deg, #19abb5, #c5c6d0);
+                height: 32px;
+                width: 32px;
+                border-radius: 16px;
             }
         }
         .message_text.textIsntExist {
