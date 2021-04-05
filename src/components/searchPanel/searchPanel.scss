@@ -1,0 +1,16 @@
+.searchPanel {
+    display: block;
+    text-align: center;
+    .searchLine:first-child {
+        padding-top: 3%;
+        padding-bottom: 5px;
+        .info {
+            text-align: left;
+            padding-left: 10px;
+        }
+    }
+    .searchInput {
+        width: calc(100% - 10px);
+        padding-left: 10px;
+    }
+} 

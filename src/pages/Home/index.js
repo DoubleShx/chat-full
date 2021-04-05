@@ -4,6 +4,9 @@ import Dialogs from '../../components/Dialogs'
 import { Row, Col } from 'antd'
 
 import './Home.scss'
+import ChatProperties from '../../components/chatProperties'
+import SearchPanel from '../../components/searchPanel'
+import {LinkOutlined, BellOutlined, SmileOutlined, AudioOutlined} from '@ant-design/icons'
 
 
 
@@ -14,24 +17,31 @@ const Home = () => {
         {name: 'tripled', lastmessage:'sdasdas asddas dasda', date: 'Wed Apr 01 2021 13:05:04', id:2},
         {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 18 2020 13:05:04', id:3},
         {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
+        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
+        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
+        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
+        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
+        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
+        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4}
     ]
     const audioLink='https://notificationsounds.com/storage/sounds/file-sounds-1148-juntos.ogg';
 
     return (
         <section className="Home">
             <Row>
-            <Col span={8} className="searchPanel"></Col>
-            <Col span={16} className="chatProperties">
-                
+            <Col xs={{span:24}, { order: 1 }} sm={8} className="searchPanel">
+                <SearchPanel />
             </Col>
-            </Row>
-            <Row>
-                <Col xs={24} sm={8}  className="dialogues">
+            <Col xs={{span:24}, { order: 3 }} sm={16} className="chatProperties">
+                <ChatProperties />
+            </Col>            
+                <Col xs={{span:24}, { order: 2 }} sm={8}  className="dialogues">
                     <Dialogs items={DialogItems}/>
                 </Col>
-                <Col xs={24} sm={16} > 
+                <Col xs={{span:24}, {offset:0}, { order: 4 }} sm={{span:16}, {offset:8}} > 
             <div className="chatContainer">
                 <div className="chat">
+                    <div className="messages" >
                 <Message text={'testing tests 👌🏼'} 
                 box={'sendbox'}
                 avatar={'Udas'}
@@ -196,8 +206,17 @@ const Home = () => {
                 date={"Sun Mar 28 2021 14:01:16"}
                 avatar={'Grqw'}
                 isTyping={true}
-                audioLink={audioLink}
                 />
+                </div>
+                    <div className="message_input">
+                        <LinkOutlined className="attach"/>
+                        <input/> 
+                        <span>
+                            <BellOutlined className="notify"/>
+                            <SmileOutlined className="smile"/>
+                            <AudioOutlined className="audio_attach"/>
+                        </span>
+                     </div>
                 </div>
             </div>
             </Col>

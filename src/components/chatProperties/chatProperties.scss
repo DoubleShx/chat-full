@@ -1,0 +1,24 @@
+.userName_chatProperties {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+.status {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    margin-bottom: 0;
+    p {
+        margin-bottom: 0;
+    }
+}
+.circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    
+    position: absolute;
+    margin-left:calc(50% - 40px);
+    margin-top: 5px;
+}

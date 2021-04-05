@@ -1,11 +1,9 @@
 .dialogs__item {
+    margin: 5px;
     overflow-x: hidden;
     min-height: 100px !important;
-    background-color: rgba(237, 242, 236, 0.7);
     align-items: center;
-    border: 2px solid rgba(230, 238, 230, 1);
-    border-radius: 6px;
-    box-shadow: 0px 2px 4px 1px #19abb5;
+    background-color: rgb(254, 255, 253);
     .isOnline::after {
         content: '';
         width: 10px;
@@ -42,7 +40,7 @@
         text-overflow: ellipsis;
 
         .dialog_item_name {
-            font-size: 18px;
+            font-size: 16px;
             h3 {
                 color: rgb(44, 41, 41);
                 margin-bottom: 0;
@@ -65,8 +63,8 @@
     }
 } 
 .dialogs__item:hover {
-    background-color: rgba(192, 192, 225, 0.563);
-    box-shadow: 3px 3px 1px 3px rgb(205, 221, 214) !important;
+    background-color: rgb(250, 247, 248);
+    box-shadow: 1px 1px 1px 3px rgb(233, 240, 237) !important;
     transition: background-color 1s ease;
     cursor: pointer;
 }

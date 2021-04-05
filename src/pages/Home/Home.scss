@@ -6,25 +6,76 @@
     box-shadow: 2px 2px 3px 2px rgba(21, 20, 20, 0.4);
     border: 2px solid rgb(245, 245, 245);
     background-color: rgba(248, 248, 248, 0.9);
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    position: relative;
     .searchPanel {
+        position: fixed !important;
+        width: 29%;
+        left: 5%;
+        z-index: 5000;
+
         min-height: 80px;
-        height: 20%;
-        background-color: cadetblue;
+        height: 100px;
+        background-color: rgb(243, 237, 243);
+        border: 2px solid rgba(170, 167, 164, 0.241);
+        z-index: 1000;
     }
     .chatProperties {
+        position: fixed !important;
+        width: 59%;
+        left: 34%;
+        z-index: 5000;
+
         margin-top: 0;
-        min-height: 80px;
-        background-color: violet;
+        height: 100px;
+        background-color: rgb(243, 237, 243);
         overflow-x: hidden !important;
+        border: 2px solid rgba(170, 167, 164, 0.241);
     }
 
 
     .chatContainer {
-        height: 100vh;
+        height: calc(100% - 100px);
+        width: 68%;
+        overflow-y: auto;
+        margin-top: 100px;
+        position: relative;
     }
     .dialogues {
-        border: 1px solid aquamarine;
+        position: fixed;
+        border: 1px solid rgb(208, 211, 210);
+        background-color: rgb(248, 250, 250);
+        height: calc(90% - 100px);
+        width: 29%;
+        overflow-y: auto;
+        margin-top: 100px;     
+    }
+    .message_input {
+        width: 59%;
+        position: fixed;
+        bottom: 5%;
+        height: 50px;
+        display: flex;
+        background-color: rgb(233, 229, 197);
+        justify-content: space-between;
+        align-items: center;
+        z-index: 9999;
+        .attach {
+            margin-left: 25px;
+        }
+        .audio_attach {
+            margin-right: 15px;
+        }
+        svg {
+            margin-right: 10px;
+        }
+
+        input {
+            height: 30px;
+            width: 70%;
+        }
     }
 
 
@@ -32,5 +83,35 @@
         width: 100%;
         height: 100%;
         overflow: auto;
+    }
+    .messages {
+        padding-bottom: 50px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .Home{
+        .dialogues {           
+            position: inherit !important;
+            width: 100%; 
+            margin-top: 0px;           
+        }
+        .chatContainer {
+            width: 100%;
+        }
+        .searchPanel {
+            position: inherit !important;
+            width: 100%;
+        }
+        .chatProperties {
+            position: inherit !important;
+            width: 100%;
+        }
+        .message_input {
+            width: 85%;
+            input {
+                width: 50% !important;
+            }
+        }
     }
 }
