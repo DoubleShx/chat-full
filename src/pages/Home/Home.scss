@@ -35,10 +35,12 @@
         border: 2px solid rgba(170, 167, 164, 0.241);
     }
 
-
+    .chatContainer_media {
+        width: 100%;
+    }
     .chatContainer {
         height: calc(100% - 100px);
-        width: 68%;
+        width: 100%;
         overflow-y: auto;
         margin-top: 100px;
         position: relative;
@@ -89,15 +91,22 @@
     }
 }
 
+
+
+
+@media only screen and (min-width: 320px) {
+    .chatContainer_media {
+        width: 100% !important;
+    }
+}
+
+
 @media only screen and (max-width: 576px) {
     .Home{
         .dialogues {           
             position: inherit !important;
             width: 100%; 
             margin-top: 0px;           
-        }
-        .chatContainer {
-            width: 100%;
         }
         .searchPanel {
             position: inherit !important;
@@ -113,5 +122,21 @@
                 width: 50% !important;
             }
         }
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .chatContainer_media {
+        width: 70% !important;
+    }
+}
+@media only screen and (min-width: 700px) {
+    .chatContainer_media {
+        width: 70% !important;
+    }
+}
+@media only screen and (min-width: 900px) {
+    .chatContainer_media {
+        width: 100% !important;
     }
 }

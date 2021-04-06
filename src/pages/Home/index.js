@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import Message from '../../components/Message'
 import Dialogs from '../../components/Dialogs'
 import { Row, Col } from 'antd'
+
+import { dialogsActions } from '../../redux/actions'
 
 import './Home.scss'
 import ChatProperties from '../../components/chatProperties'
@@ -13,32 +16,45 @@ import {LinkOutlined, BellOutlined, SmileOutlined, AudioOutlined} from '@ant-des
 const Home = () => {
     const date = 'Wed Apr 01 2021 13:05:04';
     const DialogItems = [
-        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: date, id:1},
-        {name: 'tripled', lastmessage:'sdasdas asddas dasda', date: 'Wed Apr 01 2021 13:05:04', id:2},
-        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 18 2020 13:05:04', id:3},
-        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
-        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
-        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
-        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
-        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
-        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4},
-        {name: 'doubled', lastmessage:'sdasdas asddas dasda', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:4}
+        {name: 'doubled', lastmessage:'lorem', isOnline: true, date: date, id:1},
+        {name: 'tripled', lastmessage:'ipsum', date: 'Wed Apr 01 2021 13:05:04', id:2},
+        {name: 'doubled', lastmessage:'dolor', isOnline: true, date: 'Wed Apr 18 2020 13:05:04', id:3},
+        {name: 'doubled', lastmessage:'dollar', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:5},
+        {name: 'doubled', lastmessage:'box', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:6},
+        {name: 'doubled', lastmessage:'picture', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:7},
+        {name: 'doubled', lastmessage:'spa', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:8},
+        {name: 'doubled', lastmessage:'wjdgfgo dasjfi', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:9},
+        {name: 'doubled', lastmessage:'wwa', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:10},
+        {name: 'tripled', lastmessage:'wwgas', isOnline: true, date: 'Wed Apr 03 2020 13:05:04', id:11}
     ]
     const audioLink='https://notificationsounds.com/storage/sounds/file-sounds-1148-juntos.ogg';
+    const [dialogspart, SetDialog] = useState(DialogItems);
+    const [filtered, SetFilterDialog] = useState('');
+
+
+    const searchDialog = (searchItem) => {     
+        SetDialog(DialogItems.filter(el=> el.name.toLowerCase().includes(searchItem.toLowerCase()) || el.lastmessage.toLowerCase().includes(searchItem.toLowerCase())) );
+        SetFilterDialog(searchItem)
+    }
+
+
+    // useEffect(() => {
+    //     if (!items.length)
+    // })
 
     return (
         <section className="Home">
             <Row>
             <Col xs={{span:24}, { order: 1 }} sm={8} className="searchPanel">
-                <SearchPanel />
+                <SearchPanel searchDialog={searchDialog} filtered={filtered}/>
             </Col>
             <Col xs={{span:24}, { order: 3 }} sm={16} className="chatProperties">
                 <ChatProperties />
             </Col>            
                 <Col xs={{span:24}, { order: 2 }} sm={8}  className="dialogues">
-                    <Dialogs items={DialogItems}/>
+                    <Dialogs items={dialogspart}/>
                 </Col>
-                <Col xs={{span:24}, {offset:0}, { order: 4 }} sm={{span:16}, {offset:8}} > 
+                <Col xs={{span:24}, {offset:0}, { order: 4 }} sm={{span:16}, {offset:8}} className="chatContainer_media"> 
             <div className="chatContainer">
                 <div className="chat">
                     <div className="messages" >
@@ -225,4 +241,7 @@ const Home = () => {
     )
 }
 
-export default Home;
+export default connect(
+    ({ dialogs }) => dialogs,
+    dialogsActions,
+  )(Home);

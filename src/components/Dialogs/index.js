@@ -8,7 +8,6 @@ const Dialogs = ({items}) => {
     return(
         <Fragment> 
             { orderBy(items, ['date'], ['asc']).map((item) => {
-                console.log(item);
                 return(
                     <DialogItem name={item.name} lastmessage={item.lastmessage} isOnline={item.isOnline} date={item.date} key={item.id}/>)
             })}
