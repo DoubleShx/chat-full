@@ -5,10 +5,14 @@ const Actions = {
         type: "DIALOGS:SET_ITEMS",
         payload: items
     }),
+    setCurrentDialog: id => ({
+      type: "DIALOGS:SET_CURRENT_DIALOG",
+      payload: id
+    }),
     fetchDialogs: () => dispatch => {
         dialogsAPI.getAll().then(({ data }) => {
           dispatch(Actions.setDialogs(data));
-        }).catch(error => console.log(error));
+        })
       }
 }
 export default Actions;

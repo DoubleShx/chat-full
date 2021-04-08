@@ -11,17 +11,15 @@ import Time from '../Time';
 import AudioMessage from '../AudioMessage';
 import GradientAvatar from '../GradientAvatar';
 
-const Message = ({text=null, date=null, avatar, box, attachments=null, checked = false, isTyping=false, audioLink=null}) => {
-    let isMessageInbox;
-    if (box.includes('inbox')) {
-        isMessageInbox = true;
-    }
-    else isMessageInbox = false;
-    return (
-        <div className={classNames('message_container', {"message_container_left": !isMessageInbox, "message_container_right": isMessageInbox })}> 
+const Message = ({selectedDialog}) => {
+    let {text=null, date=null, avatar=null, box='inbox', attachments=null, checked = false, isTyping=false, audioLink=null} = selectedDialog
+    console.log(selectedDialog)
+    return ( <div>
+        <div className={classNames('message_container', {"message_container_left": box='inbox', "message_container_right": box!='inbox' })}>
+             { selectedDialog ? <>
             <div className="message">
                 <div className="message_avatar">
-                <GradientAvatar name={avatar} className="avatar_circle"/>
+                    { avatar ? <GradientAvatar name={avatar} className="avatar_circle"/> : null }
                 </div>                
                 <div className={classNames("message_text", {'textIsntExist': !text && !audioLink && !isTyping})}>
                     { audioLink?
@@ -48,17 +46,19 @@ const Message = ({text=null, date=null, avatar, box, attachments=null, checked =
             </div>
 
             
-            <Time date={date}/>
+            <Time date={date}/>  </>: null
+            }
+        </div>
         </div>
     )
 }
-Message.propTypes = {
-    avatar: PropTypes.string,
-    text: PropTypes.string,
-    date: PropTypes.string,
-    box: PropTypes.string,
-    checked: PropTypes.bool,
-    attachments: PropTypes.array
-}
+// Message.propTypes = {
+//     avatar: PropTypes.string,
+//     text: PropTypes.string,
+//     date: PropTypes.string,
+//     box: PropTypes.string,
+//     checked: PropTypes.bool,
+//     attachments: PropTypes.array
+// }
 
 export default Message;

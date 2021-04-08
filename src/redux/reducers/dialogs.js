@@ -1,14 +1,20 @@
 const initialState = {
-    items: []
+    items: [],
+    currentDialog: null
 }
 
 export default (state = initialState, { type, payload }) => {
-    console.log(type)
     switch(type) {
-        case 'DIALOGS:SET_ITEMS':
+        case "DIALOGS:SET_ITEMS":
             return {
+                ...state,
                 items: payload
             };
+        case "DIALOGS:SET_CURRENT_DIALOG":
+            return {
+                ...state,
+                currentDialog: payload
+            }
         default:
             return state;
     }

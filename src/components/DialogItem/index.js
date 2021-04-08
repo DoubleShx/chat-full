@@ -6,12 +6,12 @@ import Time from '../Time'
 import {gradientGenerate} from '../../utilities/index'
 import GradientAvatar from '../GradientAvatar'
 
-const DialogItem = ({avatar, name, lastmessage, date, isOnline=false}) => {
+const DialogItem = ({avatar, name, lastmessage, date, id, SelectDialog, isOnline=false}) => {
     const gradient = gradientGenerate(name)
 
 
     return(
-        <Row span={24} className="dialogs__item">
+        <Row span={24} className="dialogs__item" onClick={()=>SelectDialog(id)}>
             <Col span={5} className="avatar_dialog">
                 { avatar
                 ? <img className={classNames("img_avatar_dialog", {isOnline: isOnline})} src={avatar} alt="avatar"/>
