@@ -13,7 +13,6 @@ import GradientAvatar from '../GradientAvatar';
 
 const Message = ({selectedDialog}) => {
     let {text=null, date=null, avatar=null, box='inbox', attachments=null, checked = false, isTyping=false, audioLink=null} = selectedDialog
-    console.log(selectedDialog)
     return ( <div>
         <div className={classNames('message_container', {"message_container_left": box='inbox', "message_container_right": box!='inbox' })}>
              { selectedDialog ? <>

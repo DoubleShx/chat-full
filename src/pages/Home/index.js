@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Message from '../../components/Message'
 import Dialogs from '../../components/Dialogs'
-import { Row, Col, Empty } from 'antd'
+import { Row, Col, Empty, Spin, Result } from 'antd'
 
 import { dialogsActions } from '../../redux/actions'
 import {messagesActions} from '../../redux/actions'
@@ -10,7 +10,7 @@ import {messagesActions} from '../../redux/actions'
 import './Home.scss'
 import ChatProperties from '../../components/chatProperties'
 import SearchPanel from '../../components/searchPanel'
-import {LinkOutlined, BellOutlined, SmileOutlined, AudioOutlined} from '@ant-design/icons'
+import CreatorMessage from '../../components/CreatorMessage'
 
 
 
@@ -19,7 +19,8 @@ const Home = (props) => {
     const audioLink='https://notificationsounds.com/storage/sounds/file-sounds-1148-juntos.ogg';
     const [dialogspart, SetDialog] = useState(dialogs.items);
     const [filtered, SetFilterDialog] = useState('');
-    const [selectedDialog, SetSelectedDialog] = useState([{text:null, avatar: null, box:null, checked:null, date:null, id: null}])    
+    const [selectedDialog, SetSelectedDialog] = useState([{text:null, avatar: null, box:null, checked:null, date:null, id: null}])   
+    console.log(messages.loading)
 
     // -----------------------------------------------------------------------------------------------------
 
@@ -37,21 +38,21 @@ const Home = (props) => {
 
 
     // --------------------------------------------------------------------------------------------------------
-    useEffect(() => {
-        fetchMessages(messages.messages)
-        }, [])
+
 
     const SelectDialog = (id) => {
-        let messageRender = messages.messages.filter(el=> el.id === id)
+        setCurrentDialog(id)
+       
+        
+    }
+    useEffect(() => {
+        fetchMessages(messages.messages)
+        let messageRender = messages.messages.filter(el=> el.id === dialogs.currentDialog)
         if (!!messageRender[0]) {
-        SetSelectedDialog(messages.messages.filter(el=> el.id === id))
+        SetSelectedDialog(messages.messages.filter(el=> el.id === dialogs.currentDialog))
         } else {
         SetSelectedDialog([{text:null, avatar: null, box:null, checked:null, date:null, id: null}])
         }
-        setCurrentDialog(id)
-    }
-    useEffect(() => {
-        console.log(!!selectedDialog[0].avatar)
     }, [dialogs.currentDialog])
 
 
@@ -70,27 +71,21 @@ const Home = (props) => {
                 <ChatProperties />
             </Col>            
                 <Col xs={{span:24, order: 2 }} sm={8}  className="dialogues">
-                    <Dialogs items={dialogspart} SelectDialog={SelectDialog}/>
+                    <Dialogs items={dialogspart} SelectDialog={SelectDialog} spiner={dialogs.loading}/>
                 </Col>
                 <Col xs={{span:24, offset:0, order: 4 }} sm={{span:16, offset:8}} className="chatContainer_media"> 
             <div className="chatContainer">
                 <div className="chat">
                     <div className="messages" >
-                  {selectedDialog[0].avatar ? selectedDialog.map((el, index) => {
-                      return <Message  selectedDialog={selectedDialog[index]} key={index}/>
-                  }) : <Empty className="emptyData"/>}
+                  { messages.loading === true ? <Spin className="message_spiner"/> : messages.loading==='error' ? <Result status="error" title="ERROR: Problem with server We are fixing bugs"/> :
+                   selectedDialog[0].avatar ? selectedDialog.map((el, index) => {
+                      return <Message  selectedDialog={selectedDialog[index]} key={index} />
+                  }) : <Empty className="emptyData"/>
+                  }
                 
 
                 </div>
-                    <div className="message_input">
-                        <LinkOutlined className="attach"/>
-                        <input/> 
-                        <span>
-                            <BellOutlined className="notify"/>
-                            <SmileOutlined className="smile"/>
-                            <AudioOutlined className="audio_attach"/>
-                        </span>
-                     </div>
+                    <CreatorMessage/>
                 </div>
             </div>
             </Col>

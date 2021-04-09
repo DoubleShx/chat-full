@@ -1,5 +1,6 @@
 const initialState = {
-    messages: []
+    messages: [],
+    loading: false
 }
 
 export default (state=initialState, {type, payload}) => {
@@ -8,6 +9,12 @@ export default (state=initialState, {type, payload}) => {
             return {
                 ...state,
                 messages: payload
+            }
+        }
+        case "MESSAGE:SET_LOADING_STATUS": {
+            return {
+                ...state,
+                loading: payload
             }
         }
         default: return state

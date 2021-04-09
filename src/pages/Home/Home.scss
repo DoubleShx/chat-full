@@ -64,8 +64,12 @@
         justify-content: space-between;
         align-items: center;
         z-index: 9999;
-        .attach {
+        .smile {
             margin-left: 25px;
+        }
+        .resume_import {
+            display: inline-block;
+            vertical-align: middle;
         }
         .audio_attach {
             margin-right: 15px;
@@ -94,6 +98,20 @@
         align-items: center;
         justify-content: center;
         height: 60vh;
+    }
+    .message_spiner {
+        display: flex;
+        justify-content: center;
+        .ant-spin-dot {
+            font-size: 60px;
+            i {
+                width: 30px;
+                height: 30px;
+            }
+        }
+        span {
+            margin-top: 40%;
+        }
     }
 }
 

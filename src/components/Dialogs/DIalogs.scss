@@ -1,0 +1,14 @@
+.spiner {
+    display: flex;
+    justify-content: center;
+    .ant-spin-dot {
+        font-size: 60px;
+        i {
+            width: 30px;
+            height: 30px;
+        }
+    }
+    span {
+        margin-top: 30%;
+    }
+}
